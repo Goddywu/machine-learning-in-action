@@ -3,7 +3,7 @@
 # Author: Goddy <wuchuansheng@yeah.net> 2019/4/23
 # Desc: 
 
-from cnn2.knn import *
+from knn2.knn import *
 import numpy as np
 import os
 

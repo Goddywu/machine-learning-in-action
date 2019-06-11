@@ -49,8 +49,20 @@ def t3():
 
 
 def t4():
+    import numpy as np
+
     data_matrix, label_matrix = load_data_set('./testSetRBF.txt')
-    svm = SVM.build(data_matrix, label_matrix, 0.6, 0.001, 40, ('rbf', 1.3))
+    svm = SVM.build(data_matrix, label_matrix, 200, 0.0001, 10000, ('rbf', 1.3))
+    m, n = np.shape(data_matrix)
+    error_count = 0
+    for i in range(m):
+        a = svm.classify(data_matrix[i])
+        b = np.sign(label_matrix[i])
+        if np.sign(label_matrix[i]) != svm.classify(data_matrix[i]):
+            error_count += 1
+    print('the training error rate is {}'.format(float(error_count) / m))
+
+
 
 
 
@@ -60,4 +72,5 @@ def t4():
 if __name__ == '__main__':
     # t1()
     # t2()
-    t3()
+    # t3()
+    t4()

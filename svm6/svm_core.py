@@ -3,6 +3,8 @@
 # Author: Goddy <wuchuansheng@yeah.net> 2019/6/5
 # Desc: 这里根据书中写的，实现的是序列最小化SMO算法
 
+# todo: 没写完...
+
 import numpy as np
 import random
 
@@ -28,7 +30,7 @@ class OptStruct:
         K = np.mat(np.zeros((m, 1)))
         if k_tup[0] == 'lin':
             K = X * A.T
-        elif k_tup == 'rbf':
+        elif k_tup[0] == 'rbf':
             for j in range(m):
                 delta_row = X[j, :] -A
                 K[j] = delta_row * delta_row.T
@@ -45,6 +47,14 @@ class SVM:
 
     @staticmethod
     def build(data_matrix_in, class_labels, C, toler, max_iter, k_tup=('lin', 0)):
+        """
+
+        :param data_matrix_in: 数据集
+        :param class_labels: 类别标签
+        :param C: 常数c
+        :param toler: 容错率
+        :param max_iter: 退出前最大循环次数
+        """
         svm = SVM()
         svm.b, svm.alphas = svm.smo_full(data_matrix_in, class_labels, C, toler, max_iter, k_tup)
         svm.Wt = svm.calc_Wt(svm.alphas, data_matrix_in, class_labels)
@@ -53,12 +63,13 @@ class SVM:
     def classify(self, data_array):
         data_matrix = np.mat(data_array)
         tmp = data_matrix*np.mat(self.Wt) + self.b
-        if float(tmp) > 0:
-            return 1
-        elif float(tmp) < 0:
-            return -1
-        else:
-            return 0
+        # if float(tmp) > 0:
+        #     return 1
+        # elif float(tmp) < 0:
+        #     return -1
+        # else:
+        #     return 0
+        return np.sign(float(tmp))
 
     @staticmethod
     def calc_Wt(alphas, data_array, class_labels):

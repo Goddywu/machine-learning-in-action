@@ -3,7 +3,7 @@
 # Author: Goddy <wuchuansheng@yeah.net> 2019/6/5
 # Desc:
 
-from svm6.svm_core import SVM
+from svm6.svm_core_old import SVM
 
 
 def load_data_set(file_path):

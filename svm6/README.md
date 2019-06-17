@@ -1,6 +1,7 @@
 
 
-
+svm_core_old 是 svm_core_simple 和 svm_core的总和，因为simple后续不会使用，所以把他们拆开了。
+<br>后续只用svm_core
 
 
 
